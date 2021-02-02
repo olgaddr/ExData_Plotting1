@@ -1,0 +1,7 @@
+data=read.table(file.choose(),sep = ";", header = TRUE, na.strings = "?")
+data <- subset(data, Date >= "2007-02-01" & Date <= "2007-02-02")
+data$datetime <- as.POSIXct(paste(data$Date, data$Time))
+Sys.setlocale("LC_TIME", "C")
+plot(data$datetime,data$Global_active_power,type="l", ylab="Global Active Power (kilowatts)",xlab="")
+dev.copy(png, file="plot2.png")
+dev.off()
